@@ -41,6 +41,10 @@
   color: #888;
 } */
 
+body {
+  background-image: linear-gradient(red, blue);
+}
+
 header {
   text-align: center;
 }
@@ -58,8 +62,7 @@ header {
 }
 
 .cards-container {
-  margin: 2rem;
-  margin-top: 3rem;
+  margin: 3rem auto 2rem auto;
   text-align: center;
 
   display: grid;
@@ -68,6 +71,46 @@ header {
   justify-items: center;
 }
 
-.cards-container img {
+.card {
   width: 13rem;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+/* Smaller screen Laptop */
+@media only screen and (max-width: 1300px) {
+  .cards-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile M to Tablet */
+@media only screen and (max-width: 750px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+  }
+
+  .card {
+    width: 9.5rem;
+  }
+}
+
+/* Mobile S */
+@media only screen and (max-width: 345px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+  }
+
+  .card {
+    width: 8.5rem;
+  }
+
+  .score-board {
+    margin-top: 2.5rem;
+    font-size: 0.8rem;
+  }
 }

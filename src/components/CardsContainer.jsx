@@ -1,3 +1,5 @@
+import Tilt from "react-parallax-tilt";
+
 import { useEffect, useState } from "react";
 
 export default function CardsContainer({
@@ -63,6 +65,14 @@ export default function CardsContainer({
       const cardsArrCopy = cardsArr.slice();
       shuffleArray(cardsArrCopy);
       setCardsArr(cardsArrCopy);
+
+      if (newGameArr.length === 12) {
+        alert("🏆 We have a WINNER!! 🫵");
+        setSession((session) => session + 1);
+        setGameArr([]);
+        setCardsArr(null);
+        setCurrentScore(0);
+      }
     }
     console.log(id, gameArr);
   }
@@ -99,12 +109,21 @@ export default function CardsContainer({
       {isLoading && <h3>Loading...</h3>}
       {cardsArr?.map((card) => {
         return (
-          <img
-            key={card.id}
-            src={card.imageUrl}
-            alt="Loading.."
-            onClick={() => handleClickOnCard(card.id)}
-          />
+          <Tilt
+            glareEnable={true}
+            glarePosition="all"
+            glareMaxOpacity={0.4}
+            perspective={800}
+          >
+            <img
+              className="card"
+              key={card.id}
+              src={card.imageUrl}
+              alt="Loading.."
+              onClick={() => handleClickOnCard(card.id)}
+              data-tilt
+            />
+          </Tilt>
         );
       })}
       {/* <img src={cardsArr?.at(1).imageUrl} alt="Loading.." /> */}

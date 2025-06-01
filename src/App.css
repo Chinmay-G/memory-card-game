@@ -64,6 +64,7 @@ header h1 {
 }
 
 header h4 {
+  color: darkkhaki;
   text-shadow: 2px 2px 2px black;
   font-style: italic;
   letter-spacing: -0.05rem;
@@ -72,8 +73,9 @@ header h4 {
 .score-board {
   margin-top: 4rem;
 
+  /* color: burlywood; */
   text-shadow: 2px 2px 2px black;
-  font-style: italic;
+  /* font-style: italic; */
   letter-spacing: -1px;
   word-spacing: -0.5rem;
   text-align: center;
@@ -86,13 +88,16 @@ header h4 {
 }
 
 .score-board span {
-  padding: 0.4rem 0.7rem;
-  background-color: darkred;
-  border-radius: 25%;
-  box-shadow: 0 2px 5px darkred;
+  padding: 0.5rem 0.8rem;
+  background-color: rgba(165, 42, 42, 0.817);
+  /* opacity: 80%; */
+  /* border-radius: 25%; */
+  border-radius: 20px;
+  /* box-shadow: 0 2px 5px darkred; */
 }
 
 #current-score {
+  color: darkkhaki;
   grid-column: 1/3;
 }
 

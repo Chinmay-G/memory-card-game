@@ -64,7 +64,7 @@ header h1 {
 }
 
 header h4 {
-  color: darkkhaki;
+  color: rgb(249, 242, 140);
   text-shadow: 2px 2px 2px black;
   font-style: italic;
   letter-spacing: -0.05rem;
@@ -93,11 +93,11 @@ header h4 {
   /* opacity: 80%; */
   /* border-radius: 25%; */
   border-radius: 20px;
-  /* box-shadow: 0 2px 5px darkred; */
+  box-shadow: 0 2px 5px darkred;
 }
 
 #current-score {
-  color: darkkhaki;
+  color: rgb(249, 242, 140);
   grid-column: 1/3;
 }
 

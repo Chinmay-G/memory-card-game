@@ -1,6 +1,7 @@
 import Tilt from "react-parallax-tilt";
 
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 export default function CardsContainer({
   currentScore,
@@ -20,11 +21,11 @@ export default function CardsContainer({
       async function fetchData() {
         setIsLoading(true);
         const res = await fetch(
-          `https://api.pokemontcg.io/v2/cards?pageSize=100`
+          `https://api.pokemontcg.io/v2/cards?pageSize=150`
         );
         const data = await res.json();
         console.log(data);
-        const randomNumArr = getRandomNums(12, 100);
+        const randomNumArr = getRandomNums(12, 150);
         const cards = randomNumArr.map((n) => {
           return { id: data.data[n].id, imageUrl: data.data[n].images.small };
         });
@@ -41,10 +42,7 @@ export default function CardsContainer({
   function handleClickOnCard(id) {
     // check if card exists in the game array
     if (gameArr.includes(id)) {
-      setSession((session) => session + 1);
-      setGameArr([]);
-      setCardsArr(null);
-      setCurrentScore(0);
+      reloadGame();
       // Also Show LOST message
     } else {
       // Add the clicked card id to the gameArr
@@ -68,13 +66,17 @@ export default function CardsContainer({
 
       if (newGameArr.length === 12) {
         alert("🏆 We have a WINNER!! 🫵");
-        setSession((session) => session + 1);
-        setGameArr([]);
-        setCardsArr(null);
-        setCurrentScore(0);
+        reloadGame();
       }
     }
     console.log(id, gameArr);
+  }
+
+  function reloadGame() {
+    setSession((session) => session + 1);
+    setGameArr([]);
+    setCardsArr(null);
+    setCurrentScore(0);
   }
 
   function getRandomNums(num, limit) {
@@ -106,10 +108,11 @@ export default function CardsContainer({
 
   return (
     <div className="cards-container">
-      {isLoading && <h3>Loading...</h3>}
+      {isLoading && <Loader />}
       {cardsArr?.map((card) => {
         return (
           <Tilt
+            key={card.id}
             glareEnable={true}
             glarePosition="all"
             glareMaxOpacity={0.4}
@@ -117,7 +120,6 @@ export default function CardsContainer({
           >
             <img
               className="card"
-              key={card.id}
               src={card.imageUrl}
               alt="Loading.."
               onClick={() => handleClickOnCard(card.id)}

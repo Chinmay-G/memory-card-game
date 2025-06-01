@@ -34,12 +34,12 @@ function ScoreBoard({ currentScore, sessionBestScore, allTimeBestScore }) {
   return (
     <div className="score-board">
       <span id="all-time-best-score">
-        All Time Best Score: {allTimeBestScore}
+        All Time Best Score : {allTimeBestScore}
       </span>
       <span id="session-best-score">
-        Session's Best Score: {sessionBestScore}
+        Session's Best Score : {sessionBestScore}
       </span>
-      <span id="current-score">Current Score: {currentScore}</span>
+      <span id="current-score">Current Score : {currentScore}</span>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import Tilt from "react-parallax-tilt";
 
 import { useEffect, useState } from "react";
 import Loader from "./Loader";
+import LostMessage from "./LostMessage";
 
 export default function CardsContainer({
   currentScore,
@@ -15,6 +16,7 @@ export default function CardsContainer({
   const [cardsArr, setCardsArr] = useState(null);
   const [gameArr, setGameArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLost, setIsLost] = useState(false);
 
   useEffect(() => {
     try {
@@ -31,6 +33,7 @@ export default function CardsContainer({
         });
         setCardsArr(cards);
         setIsLoading(false);
+        setIsLost(false);
       }
 
       fetchData();
@@ -44,6 +47,7 @@ export default function CardsContainer({
     if (gameArr.includes(id)) {
       reloadGame();
       // Also Show LOST message
+      setIsLost(true);
     } else {
       // Add the clicked card id to the gameArr
       const newGameArr = gameArr.slice();
@@ -108,6 +112,7 @@ export default function CardsContainer({
 
   return (
     <div className="cards-container">
+      {isLost && isLoading && <LostMessage />}
       {isLoading && <Loader />}
       {cardsArr?.map((card) => {
         return (
